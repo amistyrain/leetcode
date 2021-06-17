@@ -6,25 +6,26 @@ import (
 )
 
 func permutation(s string) []string {
-	backtrack(s, ``)
+	existMap := make(map[int]bool)
+	backtrack(existMap, s, ``)
 	return res
 }
 
 var res []string
 
-func backtrack(s string, track string) {
+func backtrack(existMap map[int]bool, s string, track string) {
 	if len(s) == len(track) {
 		res = append(res, track)
 		return
 	}
 
-	for _, v := range s {
+	for i, v := range s {
 		if strings.Contains(track, string(v)) {
 			continue
 		}
 		track += string(v)
 
-		backtrack(s, track)
+		backtrack(existMap, s, track)
 
 		track = track[:len(track)-1]
 	}

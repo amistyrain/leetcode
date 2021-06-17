@@ -41,5 +41,5 @@ func backtrack(digits, used string, start int) {
 }
 
 func main() {
-	letterCombinations(`23`)
+	letterCombinations(`235`)
 }
