@@ -6,6 +6,7 @@ import (
 )
 
 func permutation(s string) []string {
+	res = []string{}
 	existMap := make(map[int]bool)
 	backtrack(existMap, s, ``)
 	return res

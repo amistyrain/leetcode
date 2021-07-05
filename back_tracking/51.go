@@ -5,9 +5,7 @@ import (
 )
 
 func solveNQueens(n int) [][]string {
-	defer func() {
-		res = [][]string{}
-	}()
+	res = [][]string{}
 
 	track := make([]string, n)
 	for i := 0; i < n; i++ {

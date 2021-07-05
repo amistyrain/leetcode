@@ -5,9 +5,7 @@ import (
 )
 
 func permute(nums []int) [][]int {
-	defer func() {
-		res = [][]int{}
-	}()
+	res = [][]int{}
 	backtrack(nums, make([]int, 0))
 	fmt.Println(res)
 	return res
