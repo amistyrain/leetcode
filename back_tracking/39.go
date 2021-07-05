@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func combinationSum(candidates []int, target int) [][]int {
-
+	res = [][]int{}
 	backtrack(candidates, target, []int{}, 0, 0)
 	return res
 }

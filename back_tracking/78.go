@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func subsets(nums []int) [][]int {
+	res = [][]int{}
 	backtrack(nums, []int{}, 0)
 	return res
 }

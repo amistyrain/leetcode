@@ -14,6 +14,7 @@ func letterCombinations(digits string) []string {
 }
 
 var res []string
+
 var numTobyte = map[byte]string{
 	'2': `abc`,
 	'3': `def`,

@@ -5,7 +5,7 @@ import (
 )
 
 func generateParenthesis(n int) []string {
-
+	res = []string{}
 	backtrack(n, n, ``)
 	return res
 }

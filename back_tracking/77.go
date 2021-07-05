@@ -3,9 +3,7 @@ package main
 import "fmt"
 
 func combine(n int, k int) [][]int {
-	defer func() {
-		res = [][]int{}
-	}()
+	res = [][]int{}
 
 	backtrack(n, k, 1, []int{})
 	return res

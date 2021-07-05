@@ -6,6 +6,7 @@ import (
 )
 
 func permuteUnique(nums []int) [][]int {
+	res = [][]int{}
 	sort.Ints(nums)
 	existMap := make(map[int]bool)
 	backtrack(nums, []int{}, existMap)
