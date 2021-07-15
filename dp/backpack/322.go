@@ -57,7 +57,9 @@ func min(a, b int) int {
 // 			if i-coins[j] < 0 {
 // 				continue
 // 			}
+//
 // 			if dp[i-coins[j]] == i-coins[j]+1 {
+//凑不出来
 // 				continue
 // 			}
 // 			dp[i] = min(dp[i], dp[i-coins[j]]+1)
