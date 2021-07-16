@@ -10,6 +10,9 @@ import "fmt"
 
 // @lc code=start
 func spiralOrder(matrix [][]int) []int {
+	if len(matrix) == 0 {
+		return []int{}
+	}
 	i, j := 0, 0
 	n, m := len(matrix)-1, len(matrix[0])-1
 	res := make([]int, 0, n*m)

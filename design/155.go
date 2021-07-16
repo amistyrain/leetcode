@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=155 lang=golang
  *
@@ -67,4 +69,3 @@ func (this *MinStack) GetMin() int {
  * param_4 := obj.GetMin();
  */
 // @lc code=end
-

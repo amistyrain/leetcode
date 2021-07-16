@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{1, 4, 2, 5, 76, 8, 34, 3, 56, 67}
+	nums := []int{1, 4, 100, 2, 5, 76, 8, 34, 3, 56, 67, 11}
 	QuckSort(nums)
 	fmt.Println(nums)
 }
@@ -17,35 +17,29 @@ func quickSort(nums []int, left, right int) {
 		p := partition(nums, left, right)
 		quickSort(nums, left, p-1)
 		quickSort(nums, p+1, right)
-
 	}
 
 	return
 }
 
 func partition(nums []int, left, right int) int {
-	if left > right {
+	if left >= right {
 		return left
 	}
 	p := nums[left]
-	i, j := left+1, right
-	for {
-		for nums[i] <= p {
-			i++
-			fmt.Println(i)
-		}
-		for nums[j] > p {
+	i, j := left, right
+	for i < j {
+		for nums[j] >= p && i < j {
 			j--
 		}
-		if i >= j {
-			break
+		for nums[i] <= p && i < j {
+			i++
 		}
-		nums[i], nums[j] = nums[j], nums[i]
-		fmt.Println(nums)
+		if i < j {
+			nums[i], nums[j] = nums[j], nums[i]
+		}
 	}
-	nums[left], nums[i] = nums[i], nums[left]
+	nums[left], nums[j] = nums[j], nums[left]
 
-	fmt.Println(nums)
-
-	return i
+	return j
 }
