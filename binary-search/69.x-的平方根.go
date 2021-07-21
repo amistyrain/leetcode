@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=69 lang=golang
  *
@@ -6,6 +8,18 @@
 
 // @lc code=start
 func mySqrt(x int) int {
+	if 0 == x {
+		return 0
+	}
+
+	n := x
+	for n*n > x {
+		n = (n + x/n) / 2
+	}
+	return n
+}
+
+func musqrt(x int) int {
 	left, right := 0, x
 	result := 0
 	for left <= right {
@@ -22,4 +36,3 @@ func mySqrt(x int) int {
 }
 
 // @lc code=end
-

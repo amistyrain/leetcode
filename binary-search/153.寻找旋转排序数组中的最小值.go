@@ -20,7 +20,6 @@ func findMin(nums []int) int {
 		} else {
 			right--
 		}
-
 	}
 
 	return nums[left]
@@ -29,5 +28,5 @@ func findMin(nums []int) int {
 // @lc code=end
 
 func main() {
-	fmt.Println(findMin([]int{3, 4, 5, 1, 2}))
+	fmt.Println(findMin([]int{3, 4, 5, 6, 7, 1, 2}))
 }
