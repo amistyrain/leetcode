@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=42 lang=golang
  *
@@ -6,7 +8,7 @@
 
 // @lc code=start
 func trap(height []int) int {
-
+	return 0
 }
-// @lc code=end
 
+// @lc code=end

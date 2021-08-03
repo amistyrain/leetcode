@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=162 lang=golang
  *
@@ -18,5 +20,8 @@ func findPeakElement(nums []int) int {
 
 	return left
 }
+
 // @lc code=end
 
+func main() {
+}
