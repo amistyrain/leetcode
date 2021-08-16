@@ -16,5 +16,4 @@ func trailingZeroes(n int) int {
 
 func main() {
 	fmt.Println(trailingZeroes(125))
-
 }
