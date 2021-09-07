@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 /*
  * @lc app=leetcode.cn id=233 lang=golang
@@ -13,61 +10,64 @@ import (
 
 // @lc code=start
 func countDigitOne(n int) int {
-	p := 0
-	for int(math.Pow10(p)) <= n {
-		p++
-	}
-	tmp := make([]int, p)
-	for i := 0; i < p; i++ {
-		tmp[i] = int(math.Pow10(i))
-	}
-	// fmt.Println(tmp)
-	oneCount := 0
-	for i := 1; i <= n; i++ {
-		m := i
-		for j := len(tmp) - 1; j >= 0; j-- {
-			if m < tmp[j] {
-				continue
-			}
-			if m/tmp[j] == 1 {
-				oneCount++
-			}
-			m %= tmp[j]
+	digit := 1
+	res := 0
+
+	high := n / 10
+	cur := n % 10
+	low := 0
+	for high != 0 || cur != 0 {
+		if cur == 0 {
+			res += high * digit
+		} else if cur == 1 {
+			res += high*digit + low + 1
+		} else {
+			res += (high + 1) * digit
 		}
+
+		low += cur * digit
+		cur = high % 10
+		high /= 10
+
+		digit *= 10
 	}
 
-	return oneCount
+	return res
 }
-
-func main() {
-	fmt.Println(countDigitOne(10))
-	fmt.Println(countDigitOne(100))
-	fmt.Println(countDigitOne(1000))
-	fmt.Println(countDigitOne(10000))
-	fmt.Println(countDigitOne(20000))
-	fmt.Println(countDigitOne(30000))
-	fmt.Println(countDigitOne(100000))
-	fmt.Println(countDigitOne(1000000))
-
-	fmt.Println(countDigitOne(9))
-	fmt.Println(countDigitOne(99))
-	fmt.Println(countDigitOne(999))
-	fmt.Println(countDigitOne(9999))
-	fmt.Println(countDigitOne(99999))
-
-	// fmt.Println(countDigitOne(13))
-	// fmt.Println(countDigitOne(824883294))
-}
-
-//
-
-// 11
-// 1-9 1
-// 10-99 10 + 8
-// 10-999 100 + 100 + 100
 
 // @lc code=end
 
-// 0000 0001
-// 0000 1100
-// 0011 0100
+func main() {
+	fmt.Println(countDigitOne(2304))
+}
+
+// 为了帮助理解，我们先想象有一个自行车密码锁（这个比喻来自@ryan0414），一共有四位，每一位可单独滚动。为了计算十位出现1的次数，我们考虑三种情况：
+//
+// 1. n中的十位为0. 即 n = 2304。
+// 我们先锁住十位，强行让十位变成1，剩下三位可以随意滚动：XX1X。那么求十位出现一的个数也就是，我可以滚出多少种密码组合，使得该密码小于等于n（注意十位被锁定成了1，转不动）。
+//
+// 不难发现，我们能滚出的最大数是：2219,
+//
+// 我们能滚出的最小数是：0010。
+//
+// 那么0010到2219之间有多少种十位为1的密码呢？我们去掉十位，得到000和229。一共就是229-000+1 = 230种。即n千位和百位构成的数*10。
+//
+// 2. n中的十位为1. 即 n = 2314。
+// 我们先锁住十位，强行让十位变成1，剩下三位可以随意滚动：XX1X。那么求十位出现一的个数也就是，我可以滚出多少种密码组合，使得该密码小于等于n（注意十位被锁定成了1，转不动）。
+//
+// 不难发现，我们能滚出的最大数是：2314,
+//
+// 我们能滚出的最小数是：0010。
+//
+// 那么0010到2314之间有多少种十位为1的密码呢？我们去掉十位，得到000和234，一共就是23*10+4+1 = 235种。即n千位和百位构成的数*10 + n个位的数字+1.
+//
+// 3. n中的十位为2~9中任意数字. 即 n = 2324（只是一个例子，n = 2394是一样的）。
+// 我们先锁住十位，强行让十位变成1，剩下三位可以随意滚动：XX1X。那么求十位出现一的个数也就是，我可以滚出多少种密码组合，使得该密码小于等于n（注意十位被锁定成了1，转不动）。
+//
+// 不难发现，我们能滚出的最大数是：2319,
+//
+// 我们能滚出的最小数是：0010。
+//
+// 那么0010到2319之间有多少种十位为1的密码呢？我们去掉十位，得到000和239，一共就是239-000+1 = 240种。也是（23+1）*10 = 240种。即(n万位和千位构成的数*+1)*10.
+//
+// 如果我们定义十位左边的数为高位，例如2304的高位为23，十位右边的数为低位，例如2304的低位为4，那么以上规律就可以写成高位和低位的规律。我们分别对2304的每一位做一次分析，并将四部分结果相加就得到了答案。
