@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=92 lang=golang
  *
@@ -17,4 +19,3 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 }
 
 // @lc code=end
-
